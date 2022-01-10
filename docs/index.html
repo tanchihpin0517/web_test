@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-    </head>
-    <script>
-        document.getElementById('andy').innerHTML ="Hello World";
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><!--  JQUERY  -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
-    <body>
-        <h1 id="andy">123</h1>
-    </body>
-</html>
+    <script type="text/javascript">
+        function loadXMLDoc(theURL)
+        {
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari, SeaMonkey
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //alert(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", theURL, false);
+            xmlhttp.send();
+        }
+    </script>
+    <title></title>
+</head>
+<body>
+    <h1>Listing /assets</h1><!-- Custom Script (defered load, after dom ready) -->
+    <script>
+        var xmlhttp=false
+        loadXMLDoc('/assets/songs')
+        if(xmlhttp==false){ /* set timeout or alert() */ }
+        else { /* assign `xmlhttp.responseText` to some var */
+            console.log(xmlhttp.responseText);
+            //console.log(xmlhttp.responseXML);
+        }
+    </script>
+</body>
